@@ -3,7 +3,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <xsl:stylesheet version="1.0"
-xmlns:xsl=""> 
+xmlns:xsl="http://www.w3.org/1999/XSL/Transform"> 
 <!-- 
     rss feed might need to be put here, didnt want to commit that to github. also, i tried it and it didnt appear to work,
     i'm thinking we might need to translate from the rss feed to XML and then feed it into this, and then feed this into the 
@@ -23,7 +23,7 @@ xmlns:xsl="">
     there is no separate tag for the expiration date, it's part of the description. im not sure how we can pull the link
     to be a part of the title of each item but that is something i can figure out if we can get this basic code to work.
 -->
-    <xsl:for-each select="channel/item">
+    <xsl:for-each select="rss/channel/item">
     <tr>
       <td><xsl:value-of select="title" /></td>
       <td><xsl:value-of select="description" /></td>

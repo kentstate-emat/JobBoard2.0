@@ -1,0 +1,6 @@
+<?xml version="1.0" ?>
+<!-- MY XSLT document to transform the RSS feed into an XHTML page. -->
+<?xml-stylesheet type="text/xsl" href="./template.xsl" media="screen" ?>
+<rss version="2.0" href="https://kent.joinhandshake.com/external_feeds/13985/public.rss?token=tpYCb6ByHZRHek8jKAzoGulYcDfMydo-s24Aoz0K6P4JrqY9-lHVkg">
+	
+</rss>
