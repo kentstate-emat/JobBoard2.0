@@ -68,23 +68,25 @@
             titleLink.href = item.link;
             titleLink.target = "_blank";
             div.appendChild(titleLink);
-
+            var employerContainer = document.createElement("div");
+            employerContainer.classList = "employer-container";
             var split = item.description.split("Employer:");
             var employer = split[1].split("Expires:");
             var employerElement = document.createElement("p");
+            var spacer = document.createElement("p");
+            spacer.appendChild(document.createTextNode("●"));
+            spacer.classList = "spacer";
             var date = employer[1].split("\n\n");
             var dateElement = document.createElement("p");
             dateElement.innerHTML = date[0];
             // var description = document.createElement('p')
             var descriptionContainer = document.createElement("div");
-            var shortDescriptionContent = date[1].slice(0, 360);
-            var longDescriptionContent = date[1].slice(360);
+            var shortDescriptionContent = date[1].slice(0, 260);
+            var longDescriptionContent = date[1].slice(260);
             var shortDescription = document.createElement("p");
             var descriptionBreak = document.createElement("span");
             var longDescription = document.createElement("span");
-            descriptionBreak.appendChild(
-              document.createTextNode("... Read More")
-            );
+            descriptionBreak.appendChild(document.createTextNode("..."));
             descriptionBreak.classList = "show";
 
             shortDescription.appendChild(
@@ -101,15 +103,20 @@
             // description.innerHTML = date[1]
             console.log(date);
             employerElement.innerHTML = employer[0];
-            div.appendChild(employerElement);
-            div.appendChild(dateElement);
+            employerContainer.appendChild(employerElement);
+            employerContainer.appendChild(spacer);
+            employerContainer.appendChild(dateElement);
+            div.appendChild(employerContainer);
             div.appendChild(descriptionContainer);
-
+            var buttonContainer = document.createElement("div");
+            buttonContainer.classList = "button-container";
             var button = document.createElement("a");
             button.appendChild(document.createTextNode("View on HandShake"));
+            button.classList = "handshake-button";
             button.href = item.link;
             button.target = "_blank";
-            div.appendChild(button);
+            buttonContainer.appendChild(button);
+            div.appendChild(buttonContainer);
 
             console.log(item);
           }
