@@ -41,11 +41,37 @@ a {
   padding: 2em;
   border-radius: 1em;
 }
-
 .job-container a {
   text-decoration: none;
   color: black;
   font-size: 0.8em;
+}
+
+.handshake-button {
+  background-color: #ebab21;
+  padding: 10px 20px;
+  border-radius: 4em;
+  text-align: right;
+  color: white !important;
+  font-weight: 600;
+}
+
+.button-container {
+  display: inline-flex;
+  justify-content: end;
+  padding-top: 1em;
+  align-items: flex-end;
+}
+
+.employer-container {
+  display: flex;
+  align-items: center;
+  font-size: 0.8em;
+  gap: 0.5em;
+}
+
+.spacer {
+  font-size: 0.5em;
 }
 
 @media screen and (min-width: 650px) {
