@@ -1,7 +1,6 @@
 <html>
   <head>
     <link rel="stylesheet" href="style.css" />
-
   </head>
   <body>
     <div class="position-container">
@@ -14,9 +13,7 @@
     <div class="position-container">
       <h3>Major</h3>
       <div class="position-buttons">
-        <a onClick="getJobs()" id="emat" class="job-button"></button>
-          EMAT
-        </a>
+        <a onClick="getJobs()" id="emat" class="job-button"> EMAT </a>
         <a class="job-button" href="#">COMM</a>
         <a class="job-button" href="#">COMM</a>
         <a class="job-button" href="#">COMM</a>
@@ -24,29 +21,112 @@
         <a class="job-button" href="#">COMM</a>
       </div>
     </div>
-    <div id="display-jobs"></div>
+    <div class="display-jobs"></div>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
     <script>
-//       const code =
-//         "//rss.bloople.net/?url=https%3A%2F%2Fkent.joinhandshake.com%2Fexternal_feeds%2F13985%2Fpublic.rss%3Ftoken%3DtpYCb6ByHZRHek8jKAzoGulYcDfMydo-s24Aoz0K6P4JrqY9-lHVkg&showtitle=false&type=js";
+      //       const code =
+      //         "//rss.bloople.net/?url=https%3A%2F%2Fkent.joinhandshake.com%2Fexternal_feeds%2F13985%2Fpublic.rss%3Ftoken%3DtpYCb6ByHZRHek8jKAzoGulYcDfMydo-s24Aoz0K6P4JrqY9-lHVkg&showtitle=false&type=js";
 
-//       function showJobs(major) {
-//         var script = document.createElement("script");
-//         script.src =
-//           "//rss.bloople.net/?url=https%3A%2F%2Fkent.joinhandshake.com%2Fexternal_feeds%2F13985%2Fpublic.rss%3Ftoken%3DtpYCb6ByHZRHek8jKAzoGulYcDfMydo-s24Aoz0K6P4JrqY9-lHVkg&showtitle=false&type=js";
-// console.log(script)
-//         document.getElementById("display-jobs").appendChild(script);
-//       }
+      //       function showJobs(major) {
+      //         var script = document.createElement("script");
+      //         script.src =
+      //           "//rss.bloople.net/?url=https%3A%2F%2Fkent.joinhandshake.com%2Fexternal_feeds%2F13985%2Fpublic.rss%3Ftoken%3DtpYCb6ByHZRHek8jKAzoGulYcDfMydo-s24Aoz0K6P4JrqY9-lHVkg&showtitle=false&type=js";
+      // console.log(script)
+      //         document.getElementById("display-jobs").appendChild(script);
+      //       }
 
-      const emat_parttime ="https://rss2json.deno.dev/https://kent.joinhandshake.com/external_feeds/13985/public.rss?token=tpYCb6ByHZRHek8jKAzoGulYcDfMydo-s24Aoz0K6P4JrqY9-lHVkg"
-      function getJobs(){
-        
-        axios.get(emat_parttime, {
-          headers: {"Access-Control-Allow-Origin": "*"}
-        })
-.then(response =>{
-    console.log(response.data)
-})
+      //       const emat_parttime ="https://rss2json.deno.dev/https://kent.joinhandshake.com/external_feeds/13985/public.rss?token=tpYCb6ByHZRHek8jKAzoGulYcDfMydo-s24Aoz0K6P4JrqY9-lHVkg"
+      //       function getJobs(){
+
+      //         axios.get(emat_parttime, {
+      //           headers: {"Access-Control-Allow-Origin": "*"}
+      //         })
+      // .then(response =>{
+      //     console.log(response.data)
+      // })
+      //       }
+
+      function getJobs() {
+        $.ajax({
+          url: "https://api.rss2json.com/v1/api.json",
+          method: "GET",
+          dataType: "json",
+          data: {
+            rss_url:
+              "https://kent.joinhandshake.com/external_feeds/13985/public.rss?token=tpYCb6ByHZRHek8jKAzoGulYcDfMydo-s24Aoz0K6P4JrqY9-lHVkg",
+          },
+        }).done(function (response) {
+          if (response.status != "ok") {
+            throw response.message;
+          }
+
+          console.log("====== " + response.feed.title + " ======");
+
+          for (var i in response.items) {
+            var displayJobs =
+              document.getElementsByClassName("display-jobs")[0];
+            var item = response.items[i];
+            var div = document.createElement("div");
+            displayJobs.appendChild(div);
+            div.classList = "job-container";
+            var titleLink = document.createElement("a");
+            var title = document.createElement("h2");
+            title.innerHTML = item.title;
+            titleLink.appendChild(title);
+            titleLink.href = item.link;
+            titleLink.target = "_blank";
+            div.appendChild(titleLink);
+
+            var split = item.description.split("Employer:");
+            var employer = split[1].split("Expires:");
+            var employerElement = document.createElement("p");
+            var date = employer[1].split("\n\n");
+            var dateElement = document.createElement("p");
+            dateElement.innerHTML = date[0];
+            // var description = document.createElement('p')
+            var descriptionContainer = document.createElement("div");
+            var shortDescriptionContent = date[1].slice(0, 360);
+            var longDescriptionContent = date[1].slice(360);
+            var shortDescription = document.createElement("p");
+            var descriptionBreak = document.createElement("span");
+            var longDescription = document.createElement("span");
+            descriptionBreak.appendChild(
+              document.createTextNode("... Read More")
+            );
+            descriptionBreak.classList = "show";
+
+            shortDescription.appendChild(
+              document.createTextNode(shortDescriptionContent)
+            );
+            descriptionContainer.appendChild(shortDescription);
+            descriptionContainer.classList = "description-container";
+            longDescription.appendChild(
+              document.createTextNode(longDescriptionContent)
+            );
+            longDescription.classList = "long-description hide";
+            shortDescription.appendChild(descriptionBreak);
+            shortDescription.appendChild(longDescription);
+            // description.innerHTML = date[1]
+            console.log(date);
+            employerElement.innerHTML = employer[0];
+            div.appendChild(employerElement);
+            div.appendChild(dateElement);
+            div.appendChild(descriptionContainer);
+
+            var button = document.createElement("a");
+            button.appendChild(document.createTextNode("View on HandShake"));
+            button.href = item.link;
+            button.target = "_blank";
+            div.appendChild(button);
+
+            console.log(item);
+          }
+        });
       }
     </script>
   </body>
