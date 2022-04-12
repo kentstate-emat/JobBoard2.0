@@ -13,7 +13,7 @@
     <div class="position-container">
       <h3>Major</h3>
       <div class="position-buttons">
-        <a onClick="getJobs()" id="emat" class="job-button"> EMAT </a>
+        <a onClick="getJobs()" id="emat" class="job-button">EMAT</a>
         <a class="job-button" href="#">COMM</a>
         <a class="job-button" href="#">COMM</a>
         <a class="job-button" href="#">COMM</a>
@@ -29,29 +29,9 @@
       crossorigin="anonymous"
     ></script>
     <script>
-      //       const code =
-      //         "//rss.bloople.net/?url=https%3A%2F%2Fkent.joinhandshake.com%2Fexternal_feeds%2F13985%2Fpublic.rss%3Ftoken%3DtpYCb6ByHZRHek8jKAzoGulYcDfMydo-s24Aoz0K6P4JrqY9-lHVkg&showtitle=false&type=js";
+      window.onload = getJobs(rss);
 
-      //       function showJobs(major) {
-      //         var script = document.createElement("script");
-      //         script.src =
-      //           "//rss.bloople.net/?url=https%3A%2F%2Fkent.joinhandshake.com%2Fexternal_feeds%2F13985%2Fpublic.rss%3Ftoken%3DtpYCb6ByHZRHek8jKAzoGulYcDfMydo-s24Aoz0K6P4JrqY9-lHVkg&showtitle=false&type=js";
-      // console.log(script)
-      //         document.getElementById("display-jobs").appendChild(script);
-      //       }
-
-      //       const emat_parttime ="https://rss2json.deno.dev/https://kent.joinhandshake.com/external_feeds/13985/public.rss?token=tpYCb6ByHZRHek8jKAzoGulYcDfMydo-s24Aoz0K6P4JrqY9-lHVkg"
-      //       function getJobs(){
-
-      //         axios.get(emat_parttime, {
-      //           headers: {"Access-Control-Allow-Origin": "*"}
-      //         })
-      // .then(response =>{
-      //     console.log(response.data)
-      // })
-      //       }
-
-      function getJobs() {
+      function getJobs(rss) {
         $.ajax({
           url: "https://api.rss2json.com/v1/api.json",
           method: "GET",
