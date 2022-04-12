@@ -1,0 +1,53 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="style.css" />
+
+  </head>
+  <body>
+    <div class="position-container">
+      <h3>Position Type</h3>
+      <div class="position-buttons">
+        <a class="job-button" href="#">Full-Time</a>
+        <a class="job-button" href="#">Part-Time</a>
+      </div>
+    </div>
+    <div class="position-container">
+      <h3>Major</h3>
+      <div class="position-buttons">
+        <a onClick="getJobs()" id="emat" class="job-button"></button>
+          EMAT
+        </a>
+        <a class="job-button" href="#">COMM</a>
+        <a class="job-button" href="#">COMM</a>
+        <a class="job-button" href="#">COMM</a>
+        <a class="job-button" href="#">COMM</a>
+        <a class="job-button" href="#">COMM</a>
+      </div>
+    </div>
+    <div id="display-jobs"></div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+//       const code =
+//         "//rss.bloople.net/?url=https%3A%2F%2Fkent.joinhandshake.com%2Fexternal_feeds%2F13985%2Fpublic.rss%3Ftoken%3DtpYCb6ByHZRHek8jKAzoGulYcDfMydo-s24Aoz0K6P4JrqY9-lHVkg&showtitle=false&type=js";
+
+//       function showJobs(major) {
+//         var script = document.createElement("script");
+//         script.src =
+//           "//rss.bloople.net/?url=https%3A%2F%2Fkent.joinhandshake.com%2Fexternal_feeds%2F13985%2Fpublic.rss%3Ftoken%3DtpYCb6ByHZRHek8jKAzoGulYcDfMydo-s24Aoz0K6P4JrqY9-lHVkg&showtitle=false&type=js";
+// console.log(script)
+//         document.getElementById("display-jobs").appendChild(script);
+//       }
+
+      const emat_parttime ="https://rss2json.deno.dev/https://kent.joinhandshake.com/external_feeds/13985/public.rss?token=tpYCb6ByHZRHek8jKAzoGulYcDfMydo-s24Aoz0K6P4JrqY9-lHVkg"
+      function getJobs(){
+        
+        axios.get(emat_parttime, {
+          headers: {"Access-Control-Allow-Origin": "*"}
+        })
+.then(response =>{
+    console.log(response.data)
+})
+      }
+    </script>
+  </body>
+</html>

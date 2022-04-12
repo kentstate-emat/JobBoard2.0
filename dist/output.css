@@ -1,0 +1,24 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a {
+  font-family: sans-serif;
+}
+
+.position-container h3 {
+  font-weight: 600;
+  font-size: 0.8em;
+  text-transform: uppercase;
+}
+
+.job-button {
+  text-decoration: none;
+  padding: 5px 20px;
+  border: solid 1px black;
+  border-radius: 100px;
+  color: black;
+}
