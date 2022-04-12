@@ -13,7 +13,12 @@
     <div class="position-container">
       <h3>Major</h3>
       <div class="position-buttons">
-        <a onClick="getJobs()" id="emat" class="job-button">EMAT</a>
+        <a
+          onClick="getJobs(`https://kent.joinhandshake.com/external_feeds/13985/public.rss?token=tpYCb6ByHZRHek8jKAzoGulYcDfMydo-s24Aoz0K6P4JrqY9-lHVkg`)"
+          id="emat"
+          class="job-button"
+          >EMAT</a
+        >
         <a class="job-button" href="#">COMM</a>
         <a class="job-button" href="#">COMM</a>
         <a class="job-button" href="#">COMM</a>
@@ -29,7 +34,9 @@
       crossorigin="anonymous"
     ></script>
     <script>
-      window.onload = getJobs(rss);
+      var rssDefault = `https://kent.joinhandshake.com/external_feeds/13985/public.rss?token=tpYCb6ByHZRHek8jKAzoGulYcDfMydo-s24Aoz0K6P4JrqY9-lHVkg`;
+
+      window.onload = getJobs(rssDefault);
 
       function getJobs(rss) {
         $.ajax({
@@ -37,8 +44,7 @@
           method: "GET",
           dataType: "json",
           data: {
-            rss_url:
-              "https://kent.joinhandshake.com/external_feeds/13985/public.rss?token=tpYCb6ByHZRHek8jKAzoGulYcDfMydo-s24Aoz0K6P4JrqY9-lHVkg",
+            rss_url: rss,
           },
         }).done(function (response) {
           if (response.status != "ok") {
