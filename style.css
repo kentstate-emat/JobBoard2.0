@@ -54,10 +54,16 @@ a {
   text-align: right;
   color: white !important;
   font-weight: 600;
+  border: solid #ebab21 2px;
+}
+
+.handshake-button:hover {
+  background-color: white;
+  color: #ebab21 !important;
 }
 
 .button-container {
-  display: inline-flex;
+  display: flex;
   justify-content: end;
   padding-top: 1em;
   align-items: flex-end;
