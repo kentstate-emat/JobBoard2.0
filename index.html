@@ -1,13 +1,150 @@
 <html>
   <head>
-    <link rel="stylesheet" href="style.css" />
+    <!-- <link rel="stylesheet" href="style.css" /> -->
+    <style>
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      p,
+      a {
+        font-family: sans-serif;
+      }
+
+      .position-container h3 {
+        font-weight: 600;
+        font-size: 0.8em;
+        text-transform: uppercase;
+      }
+
+      .position-buttons {
+        padding: 1em 0;
+        display: flex;
+        gap: 0.5em;
+        overflow-y: scroll;
+      }
+
+      .job-button {
+        text-decoration: none;
+        padding: 10px 20px;
+        border: solid 1px #898989;
+        border-radius: 100px;
+        color: black;
+        cursor: pointer;
+      }
+
+      .job-button:hover {
+        background-color: #003976;
+        border-color: #003976;
+        color: white;
+      }
+
+      .active {
+        border: solid 2px #003976;
+        font-weight: bold;
+      }
+
+      .active-major {
+        border: solid 2px #003976;
+        font-weight: bold;
+      }
+
+      .display-jobs {
+        display: grid;
+        grid-template-columns: 1fr;
+        padding: 4em 2em;
+        margin: auto;
+        gap: 4em;
+      }
+
+      .job-container {
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.17);
+        padding: 2em;
+        border-radius: 1em;
+      }
+      .job-container a {
+        text-decoration: none;
+        color: black;
+        font-size: 0.8em;
+      }
+
+      .handshake-button {
+        background-color: #ebab21;
+        padding: 10px 20px;
+        border-radius: 4em;
+        text-align: right;
+        color: white !important;
+        font-weight: 600;
+        border: solid #ebab21 2px;
+      }
+
+      .handshake-button:hover {
+        background-color: white;
+        color: #ebab21 !important;
+      }
+
+      .button-container {
+        display: flex;
+        justify-content: end;
+        padding-top: 1em;
+        align-items: flex-end;
+      }
+
+      .employer-container {
+        display: flex;
+        align-items: center;
+        font-size: 0.8em;
+        gap: 0.5em;
+      }
+
+      .spacer {
+        font-size: 0.5em;
+      }
+
+      @media screen and (min-width: 650px) {
+        .display-jobs {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      @media screen and (min-width: 900px) {
+        .display-jobs {
+          grid-template-columns: 1fr 1fr 1fr;
+        }
+      }
+
+      .hide {
+        display: none;
+      }
+
+      .show {
+        display: flex;
+      }
+    </style>
   </head>
   <body>
     <div class="position-container">
       <h3>Position Type</h3>
       <div class="position-buttons">
-        <a class="job-button" href="#" onClick="showFullTime()">Full-Time</a>
-        <a class="job-button" href="#" onClick="showPartTime()">Part-Time</a>
+        <a id="ftj-button" class="job-button" href="#" onClick="showFullTime()"
+          >Full-Time Job</a
+        >
+        <a
+          id="fti-button"
+          class="job-button"
+          href="#"
+          onClick="showFullTimeInternship()"
+          >Full-Time Internship</a
+        >
+        <a
+          id="pti-button"
+          class="job-button active"
+          href="#"
+          onClick="showPartTime()"
+          >Part-Time</a
+        >
       </div>
     </div>
     <div class="position-container">
@@ -15,17 +152,45 @@
       <div class="position-buttons" id="part-time">
         <a
           onClick="getJobs(`https://kent.joinhandshake.com/external_feeds/13985/public.rss?token=tpYCb6ByHZRHek8jKAzoGulYcDfMydo-s24Aoz0K6P4JrqY9-lHVkg`)"
-          id="emat"
-          class="job-button"
-          >EMAT</a>
-        <a class="job-button" href="#">COMM</a>
-        <a class="job-button" href="#">COMM</a>
-        <a class="job-button" href="#">COMM</a>
-        <a class="job-button" href="#">COMM</a>
-        <a class="job-button" href="#">COMM</a>
+          class="job-button major active-major"
+          >COMM</a
+        >
+
+        <a
+          onClick="getJobs(`https://kent.joinhandshake.com/external_feeds/13985/public.rss?token=tpYCb6ByHZRHek8jKAzoGulYcDfMydo-s24Aoz0K6P4JrqY9-lHVkg`)"
+          class="job-button major"
+          >EMAT</a
+        >
+
+        <a
+          onClick="getJobs(`https://kent.joinhandshake.com/external_feeds/13985/public.rss?token=tpYCb6ByHZRHek8jKAzoGulYcDfMydo-s24Aoz0K6P4JrqY9-lHVkg`)"
+          class="job-button major"
+          >iSchool</a
+        >
+
+        <a
+          onClick="getJobs(`https://kent.joinhandshake.com/external_feeds/13985/public.rss?token=tpYCb6ByHZRHek8jKAzoGulYcDfMydo-s24Aoz0K6P4JrqY9-lHVkg`)"
+          class="job-button major"
+          >Journalism</a
+        >
+
+        <a
+          onClick="getJobs(`https://kent.joinhandshake.com/external_feeds/13985/public.rss?token=tpYCb6ByHZRHek8jKAzoGulYcDfMydo-s24Aoz0K6P4JrqY9-lHVkg`)"
+          class="job-button major"
+          >Public Relations</a
+        >
+
+        <a
+          onClick="getJobs(`https://kent.joinhandshake.com/external_feeds/13985/public.rss?token=tpYCb6ByHZRHek8jKAzoGulYcDfMydo-s24Aoz0K6P4JrqY9-lHVkg`)"
+          class="job-button major"
+          >Advertising</a
+        >
       </div>
 
-      <div id="full-time"> <p>this is full time div</p></div>
+      <div id="full-time" class="hide"><p>this is full time job div</p></div>
+      <div id="full-time-internship" class="hide">
+        <p>this is full time internship div</p>
+      </div>
     </div>
     <div class="display-jobs"></div>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -38,6 +203,25 @@
       var rssDefault = `https://kent.joinhandshake.com/external_feeds/13985/public.rss?token=tpYCb6ByHZRHek8jKAzoGulYcDfMydo-s24Aoz0K6P4JrqY9-lHVkg`;
 
       window.onload = getJobs(rssDefault);
+
+      var header = document.getElementById("part-time");
+      var btns = header.getElementsByClassName("major");
+      for (var i = 0; i < btns.length; i++) {
+        btns[i].addEventListener("click", function () {
+          var current = document.getElementsByClassName("active-major");
+
+          // If there's no active class
+          if (current.length > 0) {
+            current[0].className = current[0].className.replace(
+              " active-major",
+              ""
+            );
+          }
+
+          // Add the active class to the current/clicked button
+          this.className += " active-major";
+        });
+      }
 
       function getJobs(rss) {
         $.ajax({
@@ -122,24 +306,56 @@
           }
         });
       }
-      
+
       function showFullTime() {
-        if (document.getElementById("full-time").classList.contains('hide')) {
-          document.getElementById("full-time").classList.remove('hide');
-          document.getElementById("full-time").classList.add('show');
-        } 
-        document.getElementById("part-time").classList.remove('show');
-        document.getElementById("part-time").classList.add('hide');
-        
+        if (document.getElementById("full-time").classList.contains("hide")) {
+          document.getElementById("full-time").classList.remove("hide");
+          document.getElementById("full-time").classList.add("show");
+          document.getElementById("ftj-button").classList.add("active");
+        }
+        document.getElementById("part-time").classList.remove("show");
+        document.getElementById("part-time").classList.add("hide");
+        document
+          .getElementById("full-time-internship")
+          .classList.remove("show");
+        document.getElementById("full-time-internship").classList.add("hide");
+        document.getElementById("fti-button").classList.remove("active");
+        document.getElementById("pti-button").classList.remove("active");
+      }
+      function showFullTimeInternship() {
+        if (
+          document
+            .getElementById("full-time-internship")
+            .classList.contains("hide")
+        ) {
+          document
+            .getElementById("full-time-internship")
+            .classList.remove("hide");
+          document.getElementById("full-time-internship").classList.add("show");
+          document.getElementById("fti-button").classList.add("active");
+        }
+        document.getElementById("ftj-button").classList.remove("active");
+        document.getElementById("pti-button").classList.remove("active");
+        document.getElementById("part-time").classList.remove("show");
+        document.getElementById("part-time").classList.add("hide");
+        document.getElementById("full-time").classList.remove("show");
+        document.getElementById("full-time").classList.add("hide");
       }
 
       function showPartTime() {
-        if (document.getElementById("part-time").classList.contains('hide')) {
-          document.getElementById("part-time").classList.remove('hide');
-          document.getElementById("part-time").classList.add('show');
-        } 
-        document.getElementById("full-time").classList.remove('show');
-        document.getElementById("full-time").classList.add('hide');
+        if (document.getElementById("part-time").classList.contains("hide")) {
+          document.getElementById("part-time").classList.remove("hide");
+          document.getElementById("part-time").classList.add("show");
+          document.getElementById("pti-button").classList.add("active");
+        }
+        document.getElementById("ftj-button").classList.remove("active");
+        document.getElementById("fti-button").classList.remove("active");
+        document.getElementById("full-time").classList.remove("show");
+        document.getElementById("full-time").classList.add("hide");
+        document
+          .getElementById("full-time-internship")
+          .classList.remove("show");
+        document.getElementById("full-time-internship").classList.add("hide");
       }
     </script>
   </body>

@@ -15,17 +15,36 @@ a {
   text-transform: uppercase;
 }
 
+.position-buttons {
+  padding: 1em 0;
+  display: flex;
+  gap: 0.5em;
+  overflow-y: scroll;
+}
+
 .job-button {
   text-decoration: none;
-  padding: 5px 20px;
-  border: solid 1px black;
+  padding: 10px 20px;
+  border: solid 1px #898989;
   border-radius: 100px;
   color: black;
   cursor: pointer;
 }
 
 .job-button:hover {
-  background-color: black;
+  background-color: #003976;
+  border-color: #003976;
+  color: white;
+}
+
+.active {
+  border: solid 2px #003976;
+  font-weight: bold;
+}
+
+.active-major {
+  border: solid 2px #003976;
+  font-weight: bold;
 }
 
 .display-jobs {
@@ -97,5 +116,5 @@ a {
 }
 
 .show {
-  display: inline-block;
+  display: flex;
 }
