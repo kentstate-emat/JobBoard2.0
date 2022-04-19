@@ -6,25 +6,26 @@
     <div class="position-container">
       <h3>Position Type</h3>
       <div class="position-buttons">
-        <a class="job-button" href="#">Full-Time</a>
-        <a class="job-button" href="#">Part-Time</a>
+        <a class="job-button" href="#" onClick="showFullTime()">Full-Time</a>
+        <a class="job-button" href="#" onClick="showPartTime()">Part-Time</a>
       </div>
     </div>
     <div class="position-container">
       <h3>Major</h3>
-      <div class="position-buttons">
+      <div class="position-buttons" id="part-time">
         <a
           onClick="getJobs(`https://kent.joinhandshake.com/external_feeds/13985/public.rss?token=tpYCb6ByHZRHek8jKAzoGulYcDfMydo-s24Aoz0K6P4JrqY9-lHVkg`)"
           id="emat"
           class="job-button"
-          >EMAT</a
-        >
+          >EMAT</a>
         <a class="job-button" href="#">COMM</a>
         <a class="job-button" href="#">COMM</a>
         <a class="job-button" href="#">COMM</a>
         <a class="job-button" href="#">COMM</a>
         <a class="job-button" href="#">COMM</a>
       </div>
+
+      <div id="full-time"> <p>this is full time div</p></div>
     </div>
     <div class="display-jobs"></div>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -120,6 +121,25 @@
             console.log(item);
           }
         });
+      }
+      
+      function showFullTime() {
+        if (document.getElementById("full-time").classList.contains('hide')) {
+          document.getElementById("full-time").classList.remove('hide');
+          document.getElementById("full-time").classList.add('show');
+        } 
+        document.getElementById("part-time").classList.remove('show');
+        document.getElementById("part-time").classList.add('hide');
+        
+      }
+
+      function showPartTime() {
+        if (document.getElementById("part-time").classList.contains('hide')) {
+          document.getElementById("part-time").classList.remove('hide');
+          document.getElementById("part-time").classList.add('show');
+        } 
+        document.getElementById("full-time").classList.remove('show');
+        document.getElementById("full-time").classList.add('hide');
       }
     </script>
   </body>
