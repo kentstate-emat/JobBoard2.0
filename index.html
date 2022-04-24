@@ -1,6 +1,11 @@
 <html>
   <head>
     <!-- <link rel="stylesheet" href="style.css" /> -->
+    <!-- 
+        Styles for the job board. This should not need changed unless something
+        visually would like to be edited, such as a color or how many results 
+        appear in a row.
+     -->
     <style>
       h1,
       h2,
@@ -127,6 +132,15 @@
   <body>
     <div class="position-container">
       <h3>Position Type</h3>
+      <!-- 
+        the div directly below this comment is responsible for displaying
+        the buttons that appear at the top of the page that determine 
+        what kind of jobs are displayed. If another category would like 
+        to be added as another button, you can copy the "a" tag 
+        and change the function that is called in the onClick property
+        as well as changing the name of the button, which is the last line
+        of the "a" tag.
+      -->
       <div class="position-buttons">
         <a id="ftj-button" class="job-button" href="#" onClick="showFullTime()"
           >Full-Time Job</a
@@ -149,6 +163,20 @@
     </div>
     <div class="position-container">
       <h3>Major</h3>
+      <!-- 
+        the below div houses the buttons that are responsible for the majors
+        that are displayed as buttons so students can click them based on
+        what kind of job they're looking for. each button pulls in different
+        job postings from a different RSS feed, provided by the Career Exploration
+        office through Handshake. in order to add a new button, copy the "a" tag
+        of any below and change the RSS feed in the "getJobs" function. You will
+        need to make sure the RSS feed link is surrounded by ` `, which are not 
+        single quotes, but "ticks" which are commonly found on the ~ or tilda key.
+
+        you will also have to change the text of the button, which is the last 
+        line of the "a" tag. the text will be what is displayed on the button
+        on the live website.
+       -->
       <div class="position-buttons" id="part-time">
         <a
           onClick="getJobs(`https://kent.joinhandshake.com/external_feeds/13985/public.rss?token=tpYCb6ByHZRHek8jKAzoGulYcDfMydo-s24Aoz0K6P4JrqY9-lHVkg`)"
@@ -203,7 +231,9 @@
       var rssDefault = `https://kent.joinhandshake.com/external_feeds/13985/public.rss?token=tpYCb6ByHZRHek8jKAzoGulYcDfMydo-s24Aoz0K6P4JrqY9-lHVkg`;
 
       window.onload = getJobs(rssDefault);
-
+      
+      //allows the current major selected to have a different style than
+      //the other buttons
       var header = document.getElementById("part-time");
       var btns = header.getElementsByClassName("major");
       for (var i = 0; i < btns.length; i++) {
@@ -223,6 +253,8 @@
         });
       }
 
+      //function that gets the job postings using the RSS feed
+      //passed from the "a" tags above
       function getJobs(rss) {
         $.ajax({
           url: "https://api.rss2json.com/v1/api.json",
@@ -238,6 +270,7 @@
 
           console.log("====== " + response.feed.title + " ======");
 
+          //code that forms the "card" for each job displayed on the website
           for (var i in response.items) {
             var displayJobs =
               document.getElementsByClassName("display-jobs")[0];
@@ -307,6 +340,10 @@
         });
       }
 
+      //acts as a toggle between the different types of jobs one can choose
+      //if you add a new job type button (near the top of this document) 
+      //you will have to copy one of these functions in order to display
+      //jobs of that type and hide jobs of the other types
       function showFullTime() {
         if (document.getElementById("full-time").classList.contains("hide")) {
           document.getElementById("full-time").classList.remove("hide");
