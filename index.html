@@ -63,6 +63,7 @@
         box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.17);
         padding: 2em;
         border-radius: 1em;
+        max-width: 70vw;
       }
       .job-container a {
         text-decoration: none;
@@ -116,15 +117,21 @@
         display: inline-block;
       }
 
-      @media screen and (min-width: 650px) {
+      @media screen and (min-width: 750px) {
         .display-jobs {
           grid-template-columns: 1fr 1fr;
         }
+        .job-container {
+          max-width: 35vw;
+        }
       }
 
-      @media screen and (min-width: 900px) {
+      @media screen and (min-width: 1000px) {
         .display-jobs {
           grid-template-columns: 1fr 1fr 1fr;
+        }
+        .job-container {
+          max-width: 25vw;
         }
       }
 
@@ -500,9 +507,10 @@
               descriptionBreak.appendChild(document.createTextNode("..."));
               descriptionBreak.classList = "show";
 
-              shortDescription.appendChild(
-                document.createTextNode(shortDescriptionContent)
-              );
+              // shortDescription.appendChild(
+              //   document.createTextNode(shortDescriptionContent)
+              // );
+              shortDescription.innerText = shortDescriptionContent;
               descriptionContainer.appendChild(shortDescription);
               descriptionContainer.classList = "description-container";
               longDescription.appendChild(
