@@ -1,6 +1,11 @@
 <html>
   <head>
     <!-- <link rel="stylesheet" href="style.css" /> -->
+    <!-- 
+        Styles for the job board. This should not need changed unless something
+        visually would like to be edited, such as a color or how many results 
+        appear in a row.
+     -->
     <style>
       h1,
       h2,
@@ -140,6 +145,15 @@
   <body>
     <div class="position-container">
       <h3>Position Type</h3>
+      <!-- 
+        the div directly below this comment is responsible for displaying
+        the buttons that appear at the top of the page that determine 
+        what kind of jobs are displayed. If another category would like 
+        to be added as another button, you can copy the "a" tag 
+        and change the function that is called in the onClick property
+        as well as changing the name of the button, which is the last line
+        of the "a" tag.
+      -->
       <div class="position-buttons">
         <a id="ftj-button" class="job-button" href="#" onClick="showFullTime()"
           >Full-Time Job</a
@@ -161,7 +175,25 @@
       </div>
     </div>
     <div class="position-container">
+      <<<<<<< HEAD
       <h3>Interest Ares</h3>
+      =======
+      <h3>Major</h3>
+      <!-- 
+        the below div houses the buttons that are responsible for the majors
+        that are displayed as buttons so students can click them based on
+        what kind of job they're looking for. each button pulls in different
+        job postings from a different RSS feed, provided by the Career Exploration
+        office through Handshake. in order to add a new button, copy the "a" tag
+        of any below and change the RSS feed in the "getJobs" function. You will
+        need to make sure the RSS feed link is surrounded by ` `, which are not 
+        single quotes, but "ticks" which are commonly found on the ~ or tilda key.
+
+        you will also have to change the text of the button, which is the last 
+        line of the "a" tag. the text will be what is displayed on the button
+        on the live website.
+       -->
+      >>>>>>> ed23c6569a926e98a4666c17a666ec519efc543f
       <div class="position-buttons" id="part-time">
         <a
           onClick="getJobs(`https://kent.joinhandshake.com/external_feeds/14596/public.rss?token=bOuon-PBh-xrLAQ_e-lIgL4NE76vzSIsMDver5Y0CnihwzjSTcWv8Q`)"
@@ -383,213 +415,225 @@
       crossorigin="anonymous"
     ></script>
     <script>
-      var rssDefault = `https://kent.joinhandshake.com/external_feeds/14596/public.rss?token=bOuon-PBh-xrLAQ_e-lIgL4NE76vzSIsMDver5Y0CnihwzjSTcWv8Q`;
+            var rssDefault = `https://kent.joinhandshake.com/external_feeds/14596/public.rss?token=bOuon-PBh-xrLAQ_e-lIgL4NE76vzSIsMDver5Y0CnihwzjSTcWv8Q`;
 
-      window.onload = getJobs(rssDefault);
+            window.onload = getJobs(rssDefault);
 
-      var header = document.getElementById("part-time");
-      var btns = header.getElementsByClassName("major");
-      for (var i = 0; i < btns.length; i++) {
-        btns[i].addEventListener("click", function () {
-          var current = document.getElementsByClassName("active-major");
+            //allows the current major selected to have a different style than
+            //the other buttons
+            var header = document.getElementById("part-time");
+            var btns = header.getElementsByClassName("major");
+            for (var i = 0; i < btns.length; i++) {
+              btns[i].addEventListener("click", function () {
+                var current = document.getElementsByClassName("active-major");
 
-          // If there's no active class
-          if (current.length > 0) {
-            current[0].className = current[0].className.replace(
-              " active-major",
-              ""
-            );
-          }
+                // If there's no active class
+                if (current.length > 0) {
+                  current[0].className = current[0].className.replace(
+                    " active-major",
+                    ""
+                  );
+                }
 
-          // Add the active class to the current/clicked button
-          this.className += " active-major";
-        });
-      }
-
-      var header = document.getElementById("full-time");
-      var btns = header.getElementsByClassName("major");
-      for (var i = 0; i < btns.length; i++) {
-        btns[i].addEventListener("click", function () {
-          var current = document.getElementsByClassName("active-major");
-
-          // If there's no active class
-          if (current.length > 0) {
-            current[0].className = current[0].className.replace(
-              " active-major",
-              ""
-            );
-          }
-
-          // Add the active class to the current/clicked button
-          this.className += " active-major";
-        });
-      }
-
-      var header = document.getElementById("full-time-internship");
-      var btns = header.getElementsByClassName("major");
-      for (var i = 0; i < btns.length; i++) {
-        btns[i].addEventListener("click", function () {
-          var current = document.getElementsByClassName("active-major");
-
-          // If there's no active class
-          if (current.length > 0) {
-            current[0].className = current[0].className.replace(
-              " active-major",
-              ""
-            );
-          }
-
-          // Add the active class to the current/clicked button
-          this.className += " active-major";
-        });
-      }
-
-      function getJobs(rss) {
-        $.ajax({
-          url: "https://jsonapi.ethanh.works/api?",
-          method: "GET",
-          dataType: "json",
-          data: {
-            rss: rss,
-          },
-          beforeSend: function () {
-            // Before we send the request, remove the .hidden class from the spinner and default to inline-block.
-            $("#loader").removeClass("hide");
-            $("#loader").addClass("show");
-            document.getElementsByClassName("display-jobs")[0].innerHTML = "";
-          },
-          success: function (response) {
-            // if (response.status != "ok") {
-            //   throw response.message;
-            // }
-
-            console.log("====== " + response.title + " ======");
-
-            for (var i in response.items) {
-              var displayJobs =
-                document.getElementsByClassName("display-jobs")[0];
-              var item = response.items[i];
-              var div = document.createElement("div");
-              displayJobs.appendChild(div);
-              div.classList = "job-container";
-              var titleLink = document.createElement("a");
-              var title = document.createElement("h2");
-              title.innerHTML = item.title;
-              titleLink.appendChild(title);
-              titleLink.href = item.link;
-              titleLink.target = "_blank";
-              div.appendChild(titleLink);
-              var employerContainer = document.createElement("div");
-              employerContainer.classList = "employer-container";
-              var split = item.description.split("Employer:");
-              var employer = split[1].split("Expires:");
-              var employerElement = document.createElement("p");
-              var spacer = document.createElement("p");
-              spacer.appendChild(document.createTextNode("●"));
-              spacer.classList = "spacer";
-              var date = employer[1].split("\n\n");
-              var dateElement = document.createElement("p");
-              dateElement.innerHTML = date[0];
-              // var description = document.createElement('p')
-              var descriptionContainer = document.createElement("div");
-              var shortDescriptionContent = date[1].slice(0, 260);
-              var longDescriptionContent = date[1].slice(260);
-              var shortDescription = document.createElement("p");
-              var descriptionBreak = document.createElement("span");
-              var longDescription = document.createElement("span");
-              descriptionBreak.appendChild(document.createTextNode("..."));
-              descriptionBreak.classList = "show";
-
-              shortDescription.appendChild(
-                document.createTextNode(shortDescriptionContent)
-              );
-              descriptionContainer.appendChild(shortDescription);
-              descriptionContainer.classList = "description-container";
-              longDescription.appendChild(
-                document.createTextNode(longDescriptionContent)
-              );
-              longDescription.classList = "long-description hide";
-              shortDescription.appendChild(descriptionBreak);
-              shortDescription.appendChild(longDescription);
-              // description.innerHTML = date[1]
-              console.log(date);
-              employerElement.innerHTML = employer[0];
-              employerContainer.appendChild(employerElement);
-              employerContainer.appendChild(spacer);
-              employerContainer.appendChild(dateElement);
-              div.appendChild(employerContainer);
-              div.appendChild(descriptionContainer);
-              var buttonContainer = document.createElement("div");
-              buttonContainer.classList = "button-container";
-              var button = document.createElement("a");
-              button.appendChild(document.createTextNode("View on HandShake"));
-              button.classList = "handshake-button";
-              button.href = item.link;
-              button.target = "_blank";
-              buttonContainer.appendChild(button);
-              div.appendChild(buttonContainer);
-
-              console.log(item);
+                // Add the active class to the current/clicked button
+                this.className += " active-major";
+              });
             }
-          },
-          complete: function () {
-            // Set our complete callback, adding the .hidden class and hiding the spinner.
-            $("#loader").addClass("hide");
-            $("#loader").removeClass("show");
-          },
-        });
-      }
 
-      function showFullTime() {
-        if (document.getElementById("full-time").classList.contains("hide")) {
-          document.getElementById("full-time").classList.remove("hide");
-          document.getElementById("full-time").classList.add("show");
-          document.getElementById("ftj-button").classList.add("active");
-        }
-        document.getElementById("part-time").classList.remove("show");
-        document.getElementById("part-time").classList.add("hide");
-        document
-          .getElementById("full-time-internship")
-          .classList.remove("show");
-        document.getElementById("full-time-internship").classList.add("hide");
-        document.getElementById("fti-button").classList.remove("active");
-        document.getElementById("pti-button").classList.remove("active");
-      }
-      function showFullTimeInternship() {
-        if (
-          document
-            .getElementById("full-time-internship")
-            .classList.contains("hide")
-        ) {
-          document
-            .getElementById("full-time-internship")
-            .classList.remove("hide");
-          document.getElementById("full-time-internship").classList.add("show");
-          document.getElementById("fti-button").classList.add("active");
-        }
-        document.getElementById("ftj-button").classList.remove("active");
-        document.getElementById("pti-button").classList.remove("active");
-        document.getElementById("part-time").classList.remove("show");
-        document.getElementById("part-time").classList.add("hide");
-        document.getElementById("full-time").classList.remove("show");
-        document.getElementById("full-time").classList.add("hide");
-      }
+      <<<<<<< HEAD
+            var header = document.getElementById("full-time");
+            var btns = header.getElementsByClassName("major");
+            for (var i = 0; i < btns.length; i++) {
+              btns[i].addEventListener("click", function () {
+                var current = document.getElementsByClassName("active-major");
 
-      function showPartTime() {
-        if (document.getElementById("part-time").classList.contains("hide")) {
-          document.getElementById("part-time").classList.remove("hide");
-          document.getElementById("part-time").classList.add("show");
-          document.getElementById("pti-button").classList.add("active");
-        }
-        document.getElementById("ftj-button").classList.remove("active");
-        document.getElementById("fti-button").classList.remove("active");
-        document.getElementById("full-time").classList.remove("show");
-        document.getElementById("full-time").classList.add("hide");
-        document
-          .getElementById("full-time-internship")
-          .classList.remove("show");
-        document.getElementById("full-time-internship").classList.add("hide");
-      }
+                // If there's no active class
+                if (current.length > 0) {
+                  current[0].className = current[0].className.replace(
+                    " active-major",
+                    ""
+                  );
+                }
+
+                // Add the active class to the current/clicked button
+                this.className += " active-major";
+              });
+            }
+
+            var header = document.getElementById("full-time-internship");
+            var btns = header.getElementsByClassName("major");
+            for (var i = 0; i < btns.length; i++) {
+              btns[i].addEventListener("click", function () {
+                var current = document.getElementsByClassName("active-major");
+
+                // If there's no active class
+                if (current.length > 0) {
+                  current[0].className = current[0].className.replace(
+                    " active-major",
+                    ""
+                  );
+                }
+
+                // Add the active class to the current/clicked button
+                this.className += " active-major";
+              });
+            }
+
+      =======
+            //function that gets the job postings using the RSS feed
+            //passed from the "a" tags above
+      >>>>>>> ed23c6569a926e98a4666c17a666ec519efc543f
+            function getJobs(rss) {
+              $.ajax({
+                url: "https://jsonapi.ethanh.works/api?",
+                method: "GET",
+                dataType: "json",
+                data: {
+                  rss: rss,
+                },
+                beforeSend: function () {
+                  // Before we send the request, remove the .hidden class from the spinner and default to inline-block.
+                  $("#loader").removeClass("hide");
+                  $("#loader").addClass("show");
+                  document.getElementsByClassName("display-jobs")[0].innerHTML = "";
+                },
+                success: function (response) {
+                  // if (response.status != "ok") {
+                  //   throw response.message;
+                  // }
+
+                  console.log("====== " + response.title + " ======");
+
+                //code that forms the "card" for each job displayed on the website
+                for (var i in response.items) {
+                  var displayJobs =
+                    document.getElementsByClassName("display-jobs")[0];
+                  var item = response.items[i];
+                  var div = document.createElement("div");
+                  displayJobs.appendChild(div);
+                  div.classList = "job-container";
+                  var titleLink = document.createElement("a");
+                  var title = document.createElement("h2");
+                  title.innerHTML = item.title;
+                  titleLink.appendChild(title);
+                  titleLink.href = item.link;
+                  titleLink.target = "_blank";
+                  div.appendChild(titleLink);
+                  var employerContainer = document.createElement("div");
+                  employerContainer.classList = "employer-container";
+                  var split = item.description.split("Employer:");
+                  var employer = split[1].split("Expires:");
+                  var employerElement = document.createElement("p");
+                  var spacer = document.createElement("p");
+                  spacer.appendChild(document.createTextNode("●"));
+                  spacer.classList = "spacer";
+                  var date = employer[1].split("\n\n");
+                  var dateElement = document.createElement("p");
+                  dateElement.innerHTML = date[0];
+                  // var description = document.createElement('p')
+                  var descriptionContainer = document.createElement("div");
+                  var shortDescriptionContent = date[1].slice(0, 260);
+                  var longDescriptionContent = date[1].slice(260);
+                  var shortDescription = document.createElement("p");
+                  var descriptionBreak = document.createElement("span");
+                  var longDescription = document.createElement("span");
+                  descriptionBreak.appendChild(document.createTextNode("..."));
+                  descriptionBreak.classList = "show";
+
+                    shortDescription.appendChild(
+                      document.createTextNode(shortDescriptionContent)
+                    );
+                    descriptionContainer.appendChild(shortDescription);
+                    descriptionContainer.classList = "description-container";
+                    longDescription.appendChild(
+                      document.createTextNode(longDescriptionContent)
+                    );
+                    longDescription.classList = "long-description hide";
+                    shortDescription.appendChild(descriptionBreak);
+                    shortDescription.appendChild(longDescription);
+                    // description.innerHTML = date[1]
+                    console.log(date);
+                    employerElement.innerHTML = employer[0];
+                    employerContainer.appendChild(employerElement);
+                    employerContainer.appendChild(spacer);
+                    employerContainer.appendChild(dateElement);
+                    div.appendChild(employerContainer);
+                    div.appendChild(descriptionContainer);
+                    var buttonContainer = document.createElement("div");
+                    buttonContainer.classList = "button-container";
+                    var button = document.createElement("a");
+                    button.appendChild(document.createTextNode("View on HandShake"));
+                    button.classList = "handshake-button";
+                    button.href = item.link;
+                    button.target = "_blank";
+                    buttonContainer.appendChild(button);
+                    div.appendChild(buttonContainer);
+
+                    console.log(item);
+                  }
+                },
+                complete: function () {
+                  // Set our complete callback, adding the .hidden class and hiding the spinner.
+                  $("#loader").addClass("hide");
+                  $("#loader").removeClass("show");
+                },
+              });
+            }
+
+            //acts as a toggle between the different types of jobs one can choose
+            //if you add a new job type button (near the top of this document)
+            //you will have to copy one of these functions in order to display
+            //jobs of that type and hide jobs of the other types
+            function showFullTime() {
+              if (document.getElementById("full-time").classList.contains("hide")) {
+                document.getElementById("full-time").classList.remove("hide");
+                document.getElementById("full-time").classList.add("show");
+                document.getElementById("ftj-button").classList.add("active");
+              }
+              document.getElementById("part-time").classList.remove("show");
+              document.getElementById("part-time").classList.add("hide");
+              document
+                .getElementById("full-time-internship")
+                .classList.remove("show");
+              document.getElementById("full-time-internship").classList.add("hide");
+              document.getElementById("fti-button").classList.remove("active");
+              document.getElementById("pti-button").classList.remove("active");
+            }
+            function showFullTimeInternship() {
+              if (
+                document
+                  .getElementById("full-time-internship")
+                  .classList.contains("hide")
+              ) {
+                document
+                  .getElementById("full-time-internship")
+                  .classList.remove("hide");
+                document.getElementById("full-time-internship").classList.add("show");
+                document.getElementById("fti-button").classList.add("active");
+              }
+              document.getElementById("ftj-button").classList.remove("active");
+              document.getElementById("pti-button").classList.remove("active");
+              document.getElementById("part-time").classList.remove("show");
+              document.getElementById("part-time").classList.add("hide");
+              document.getElementById("full-time").classList.remove("show");
+              document.getElementById("full-time").classList.add("hide");
+            }
+
+            function showPartTime() {
+              if (document.getElementById("part-time").classList.contains("hide")) {
+                document.getElementById("part-time").classList.remove("hide");
+                document.getElementById("part-time").classList.add("show");
+                document.getElementById("pti-button").classList.add("active");
+              }
+              document.getElementById("ftj-button").classList.remove("active");
+              document.getElementById("fti-button").classList.remove("active");
+              document.getElementById("full-time").classList.remove("show");
+              document.getElementById("full-time").classList.add("hide");
+              document
+                .getElementById("full-time-internship")
+                .classList.remove("show");
+              document.getElementById("full-time-internship").classList.add("hide");
+            }
     </script>
   </body>
 </html>
