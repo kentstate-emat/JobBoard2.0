@@ -23,7 +23,7 @@
         padding: 1em 0;
         display: flex;
         gap: 0.5em;
-        overflow-y: scroll;
+        flex-wrap: wrap;
       }
 
       .job-button {
@@ -103,6 +103,19 @@
         font-size: 0.5em;
       }
 
+      #loader {
+        height: 40vh;
+        width: 100vw;
+        margin: auto;
+        justify-content: center;
+      }
+
+      svg {
+        width: 100px;
+        height: 100px;
+        display: inline-block;
+      }
+
       @media screen and (min-width: 650px) {
         .display-jobs {
           grid-template-columns: 1fr 1fr;
@@ -148,49 +161,219 @@
       </div>
     </div>
     <div class="position-container">
-      <h3>Major</h3>
+      <h3>Interest Ares</h3>
       <div class="position-buttons" id="part-time">
         <a
-          onClick="getJobs(`https://kent.joinhandshake.com/external_feeds/13985/public.rss?token=tpYCb6ByHZRHek8jKAzoGulYcDfMydo-s24Aoz0K6P4JrqY9-lHVkg`)"
+          onClick="getJobs(`https://kent.joinhandshake.com/external_feeds/14596/public.rss?token=bOuon-PBh-xrLAQ_e-lIgL4NE76vzSIsMDver5Y0CnihwzjSTcWv8Q`)"
           class="job-button major active-major"
-          >COMM</a
+          >Advertising</a
         >
 
         <a
-          onClick="getJobs(`https://kent.joinhandshake.com/external_feeds/13985/public.rss?token=tpYCb6ByHZRHek8jKAzoGulYcDfMydo-s24Aoz0K6P4JrqY9-lHVkg`)"
+          onClick="getJobs(`https://kent.joinhandshake.com/external_feeds/14601/public.rss?token=sNBrgybns3Kn_AJw0GrKSpDfHAla7P1D6WEb3HoaCKR7O5_IWlopxg`)"
+          class="job-button major"
+          >Communications</a
+        >
+
+        <a
+          onClick="getJobs(`https://kent.joinhandshake.com/external_feeds/14605/public.rss?token=a3kzBIJ73eHTJnDfL26MLuz9GYnUBf6OrbU8Q-jguBzDpU3fX5ILxw`)"
+          class="job-button major"
+          >Digital Media Production</a
+        >
+
+        <a
+          onClick="getJobs(`https://kent.joinhandshake.com/external_feeds/14609/public.rss?token=CJjPn4XhPMgtp9bqAnElokV_p8p3fAjzgnIubcw5NwvGHYZO2PWlxQ`)"
           class="job-button major"
           >EMAT</a
         >
 
         <a
-          onClick="getJobs(`https://kent.joinhandshake.com/external_feeds/13985/public.rss?token=tpYCb6ByHZRHek8jKAzoGulYcDfMydo-s24Aoz0K6P4JrqY9-lHVkg`)"
+          onClick="getJobs(`https://kent.joinhandshake.com/external_feeds/14613/public.rss?token=-oQPdg_OM1wLLSsLIXBTC_hs1tUnLDIrObgThJkoCYP4_tFHGdg0qg`)"
           class="job-button major"
-          >iSchool</a
+          >INFO</a
         >
 
         <a
-          onClick="getJobs(`https://kent.joinhandshake.com/external_feeds/13985/public.rss?token=tpYCb6ByHZRHek8jKAzoGulYcDfMydo-s24Aoz0K6P4JrqY9-lHVkg`)"
+          onClick="getJobs(`https://kent.joinhandshake.com/external_feeds/14617/public.rss?token=HFCLj4s6WLsdxhFQv9VnKtH9m7paRV00t-YyH7npS0etYVXjXkJCOg`)"
           class="job-button major"
           >Journalism</a
         >
-
         <a
-          onClick="getJobs(`https://kent.joinhandshake.com/external_feeds/13985/public.rss?token=tpYCb6ByHZRHek8jKAzoGulYcDfMydo-s24Aoz0K6P4JrqY9-lHVkg`)"
+          onClick="getJobs(`https://kent.joinhandshake.com/external_feeds/14640/public.rss?token=gm4uStJaHeujCMioz5iddXiiej5OfGA_jAItkVn1ny7IJeogcQthIw`)"
+          class="job-button major"
+          >Photography</a
+        >
+        <a
+          onClick="getJobs(`https://kent.joinhandshake.com/external_feeds/14646/public.rss?token=jTrSHdg4UqLpoZ3Ur6DVMv6xg5-Tlg83WHI79nTO5xnpY7x97iaYzg`)"
           class="job-button major"
           >Public Relations</a
         >
-
         <a
-          onClick="getJobs(`https://kent.joinhandshake.com/external_feeds/13985/public.rss?token=tpYCb6ByHZRHek8jKAzoGulYcDfMydo-s24Aoz0K6P4JrqY9-lHVkg`)"
+          onClick="getJobs(`https://kent.joinhandshake.com/external_feeds/14651/public.rss?token=TOMP9oZ1gehNnYeSYyxQmTcsftMfPkwd1-p_uQXH2bOUn_WR2oBqmg`)"
           class="job-button major"
-          >Advertising</a
+          >VCD</a
+        >
+        <a
+          onClick="getJobs(`https://kent.joinhandshake.com/external_feeds/14663/public.rss?token=8CWVAoLWBaNMPyfXwkhparqN_ZK9W6ptenOTDnZndF1IZewWBK-5dg`)"
+          class="job-button major"
+          >UXD</a
         >
       </div>
 
-      <div id="full-time" class="hide"><p>this is full time job div</p></div>
-      <div id="full-time-internship" class="hide">
-        <p>this is full time internship div</p>
+      <div id="full-time" class="hide position-buttons">
+        <a
+          onClick="getJobs(`https://kent.joinhandshake.com/external_feeds/14594/public.rss?token=HZtV9ZOuSfY5mAOn0n4AYI1aiaAHV3oi2NoZDCN_WqDCO-emhDcN-w`)"
+          class="job-button major"
+          >Advertising</a
+        >
+
+        <a
+          onClick="getJobs(`https://kent.joinhandshake.com/external_feeds/14597/public.rss?token=YRvtA89nnhkxfod0ShAay_ZZOcZ5iIr6G6tOWjBrHTOPeSO8BNqJjw`)"
+          class="job-button major"
+          >Communications</a
+        >
+
+        <a
+          onClick="getJobs(`https://kent.joinhandshake.com/external_feeds/14603/public.rss?token=QD3HBnsUyDcBhDKmsVzFcuSE1DRY1U4_M0QqM4BycZTXaF-QriwD6g`)"
+          class="job-button major"
+          >Digital Media Production</a
+        >
+
+        <a
+          onClick="getJobs(`https://kent.joinhandshake.com/external_feeds/14606/public.rss?token=aUS2yVI9ItFn1Gkw-VN_CaBimetVgPnpzSFa3cG8F5bKCNtzrd9viw`)"
+          class="job-button major"
+          >EMAT</a
+        >
+
+        <a
+          onClick="getJobs(`https://kent.joinhandshake.com/external_feeds/14611/public.rss?token=0bmHVD5q8LkkeAWPA9KtnjS3W8yTA78EkpgewaxMjMdORsBYh1Kdjg`)"
+          class="job-button major"
+          >INFO</a
+        >
+
+        <a
+          onClick="getJobs(`https://kent.joinhandshake.com/external_feeds/14614/public.rss?token=ZKMvrp9dFdYOv-lLd27czxQBAi1bvbr5tnVe4UUnL1yVnd8qZ6TngQ`)"
+          class="job-button major"
+          >Journalism</a
+        >
+        <a
+          onClick="getJobs(`https://kent.joinhandshake.com/external_feeds/14636/public.rss?token=6dxu1ItzSEhLrBbn_03HLEQKTPrW6lX_2f5tDM3FS8aY-4slVSN_-Q`)"
+          class="job-button major"
+          >Photography</a
+        >
+        <a
+          onClick="getJobs(`https://kent.joinhandshake.com/external_feeds/14641/public.rss?token=L93UtVXOI6w-9Yg1QhTpQRmhtOspU4oITLjZQLezJGMceGMhPcKSIQ`)"
+          class="job-button major"
+          >Public Relations</a
+        >
+        <a
+          onClick="getJobs(`https://kent.joinhandshake.com/external_feeds/14647/public.rss?token=wrl8huOnMeVWo8vRtM7gVADd5mZubShF9B9ERjQbH1TS3__YluHVPQ`)"
+          class="job-button major"
+          >VCD</a
+        >
+        <a
+          onClick="getJobs(`https://kent.joinhandshake.com/external_feeds/14652/public.rss?token=f0Suu_o8oOrAEGs_A1iwvrsB9j3BEh-vpiAMC2xYDH4S2Zm6IpJgmQ`)"
+          class="job-button major"
+          >UXD</a
+        >
       </div>
+      <div id="full-time-internship" class="hide position-buttons">
+        <a
+          onClick="getJobs(`https://kent.joinhandshake.com/external_feeds/14595/public.rss?token=wxIFDUximTuGTcAtPKgFWkuvs2wyDjZ_8w0_jDVJSED9AACxaTyXeg`)"
+          class="job-button major"
+          >Advertising</a
+        >
+
+        <a
+          onClick="getJobs(`https://kent.joinhandshake.com/external_feeds/14599/public.rss?token=C0Cpe6iBtWB9FEC3mxL8uDadM84U0jQIjVXrKkQj5PaDGgetaebQhQ`)"
+          class="job-button major"
+          >Communications</a
+        >
+
+        <a
+          onClick="getJobs(`https://kent.joinhandshake.com/external_feeds/14604/public.rss?token=IoRRTAfEXhCeM41EOtRa2ThvD81iuJWK1HFoum1u5aoOOHOTTX0Esw`)"
+          class="job-button major"
+          >Digital Media Production</a
+        >
+
+        <a
+          onClick="getJobs(`https://kent.joinhandshake.com/external_feeds/14608/public.rss?token=dqUZuWfaLMDClORnZvWlPCrVoB-7MTHVHKAHgxedYjPeaWE0YuXMYw`)"
+          class="job-button major"
+          >EMAT</a
+        >
+
+        <a
+          onClick="getJobs(`https://kent.joinhandshake.com/external_feeds/14612/public.rss?token=R5hWz9xVC6vWtImG1sNaCVmMhXbnf6ynbnvKWlOH0OV5u9SwYwfYxg`)"
+          class="job-button major"
+          >INFO</a
+        >
+
+        <a
+          onClick="getJobs(`https://kent.joinhandshake.com/external_feeds/14616/public.rss?token=8Y5-e9PDQf_st4wWNXG9Ph700AqXZ3UgaYjDfD6I2PCLd9B2xqWkiw`)"
+          class="job-button major"
+          >Journalism</a
+        >
+        <a
+          onClick="getJobs(`https://kent.joinhandshake.com/external_feeds/14639/public.rss?token=SCguttSa1bNj6teYwGmCyfC7_ae7uWKG7vxlWJ-vQ2h0UUyQsGbJww`)"
+          class="job-button major"
+          >Photography</a
+        >
+        <a
+          onClick="getJobs(`https://kent.joinhandshake.com/external_feeds/14645/public.rss?token=X3DYJbzmb81oq-sTSBcx9ps5XzzkVEhw9JIHRmBRbfUwqzbhpE9JFg`)"
+          class="job-button major"
+          >Public Relations</a
+        >
+        <a
+          onClick="getJobs(`https://kent.joinhandshake.com/external_feeds/14649/public.rss?token=cZ0cTHhGwN9LnQ42KhmUR_Xoa7YUMdePXy3WqpOFb2ZyKte6YjSrIA`)"
+          class="job-button major"
+          >VCD</a
+        >
+        <a
+          onClick="getJobs(`https://kent.joinhandshake.com/external_feeds/14661/public.rss?token=pYBZO4OujkauJc6P863X2Yk7DGRFRVms1Ep3gebvb8vWBzRuyCHtug`)"
+          class="job-button major"
+          >UXD</a
+        >
+      </div>
+    </div>
+    <div id="loader" class="hide">
+      <svg
+        version="1.1"
+        id="L3"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        x="0px"
+        y="0px"
+        viewBox="0 0 100 100"
+        enable-background="new 0 0 0 0"
+        xml:space="preserve"
+      >
+        <circle
+          fill="none"
+          stroke="#003976"
+          stroke-width="4"
+          cx="50"
+          cy="50"
+          r="44"
+          style="opacity: 1"
+        />
+        <circle
+          fill="#ebab21"
+          stroke="#ebab21"
+          stroke-width="3"
+          cx="8"
+          cy="54"
+          r="6"
+        >
+          <animateTransform
+            attributeName="transform"
+            dur="2s"
+            type="rotate"
+            from="0 50 48"
+            to="360 50 52"
+            repeatCount="indefinite"
+          />
+        </circle>
+      </svg>
     </div>
     <div class="display-jobs"></div>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -200,7 +383,7 @@
       crossorigin="anonymous"
     ></script>
     <script>
-      var rssDefault = `https://kent.joinhandshake.com/external_feeds/13985/public.rss?token=tpYCb6ByHZRHek8jKAzoGulYcDfMydo-s24Aoz0K6P4JrqY9-lHVkg`;
+      var rssDefault = `https://kent.joinhandshake.com/external_feeds/14596/public.rss?token=bOuon-PBh-xrLAQ_e-lIgL4NE76vzSIsMDver5Y0CnihwzjSTcWv8Q`;
 
       window.onload = getJobs(rssDefault);
 
@@ -223,87 +406,137 @@
         });
       }
 
+      var header = document.getElementById("full-time");
+      var btns = header.getElementsByClassName("major");
+      for (var i = 0; i < btns.length; i++) {
+        btns[i].addEventListener("click", function () {
+          var current = document.getElementsByClassName("active-major");
+
+          // If there's no active class
+          if (current.length > 0) {
+            current[0].className = current[0].className.replace(
+              " active-major",
+              ""
+            );
+          }
+
+          // Add the active class to the current/clicked button
+          this.className += " active-major";
+        });
+      }
+
+      var header = document.getElementById("full-time-internship");
+      var btns = header.getElementsByClassName("major");
+      for (var i = 0; i < btns.length; i++) {
+        btns[i].addEventListener("click", function () {
+          var current = document.getElementsByClassName("active-major");
+
+          // If there's no active class
+          if (current.length > 0) {
+            current[0].className = current[0].className.replace(
+              " active-major",
+              ""
+            );
+          }
+
+          // Add the active class to the current/clicked button
+          this.className += " active-major";
+        });
+      }
+
       function getJobs(rss) {
         $.ajax({
-          url: "https://api.rss2json.com/v1/api.json",
+          url: "https://jsonapi.ethanh.works/api?",
           method: "GET",
           dataType: "json",
           data: {
-            rss_url: rss,
+            rss: rss,
           },
-        }).done(function (response) {
-          if (response.status != "ok") {
-            throw response.message;
-          }
+          beforeSend: function () {
+            // Before we send the request, remove the .hidden class from the spinner and default to inline-block.
+            $("#loader").removeClass("hide");
+            $("#loader").addClass("show");
+            document.getElementsByClassName("display-jobs")[0].innerHTML = "";
+          },
+          success: function (response) {
+            // if (response.status != "ok") {
+            //   throw response.message;
+            // }
 
-          console.log("====== " + response.feed.title + " ======");
+            console.log("====== " + response.title + " ======");
 
-          for (var i in response.items) {
-            var displayJobs =
-              document.getElementsByClassName("display-jobs")[0];
-            var item = response.items[i];
-            var div = document.createElement("div");
-            displayJobs.appendChild(div);
-            div.classList = "job-container";
-            var titleLink = document.createElement("a");
-            var title = document.createElement("h2");
-            title.innerHTML = item.title;
-            titleLink.appendChild(title);
-            titleLink.href = item.link;
-            titleLink.target = "_blank";
-            div.appendChild(titleLink);
-            var employerContainer = document.createElement("div");
-            employerContainer.classList = "employer-container";
-            var split = item.description.split("Employer:");
-            var employer = split[1].split("Expires:");
-            var employerElement = document.createElement("p");
-            var spacer = document.createElement("p");
-            spacer.appendChild(document.createTextNode("●"));
-            spacer.classList = "spacer";
-            var date = employer[1].split("\n\n");
-            var dateElement = document.createElement("p");
-            dateElement.innerHTML = date[0];
-            // var description = document.createElement('p')
-            var descriptionContainer = document.createElement("div");
-            var shortDescriptionContent = date[1].slice(0, 260);
-            var longDescriptionContent = date[1].slice(260);
-            var shortDescription = document.createElement("p");
-            var descriptionBreak = document.createElement("span");
-            var longDescription = document.createElement("span");
-            descriptionBreak.appendChild(document.createTextNode("..."));
-            descriptionBreak.classList = "show";
+            for (var i in response.items) {
+              var displayJobs =
+                document.getElementsByClassName("display-jobs")[0];
+              var item = response.items[i];
+              var div = document.createElement("div");
+              displayJobs.appendChild(div);
+              div.classList = "job-container";
+              var titleLink = document.createElement("a");
+              var title = document.createElement("h2");
+              title.innerHTML = item.title;
+              titleLink.appendChild(title);
+              titleLink.href = item.link;
+              titleLink.target = "_blank";
+              div.appendChild(titleLink);
+              var employerContainer = document.createElement("div");
+              employerContainer.classList = "employer-container";
+              var split = item.description.split("Employer:");
+              var employer = split[1].split("Expires:");
+              var employerElement = document.createElement("p");
+              var spacer = document.createElement("p");
+              spacer.appendChild(document.createTextNode("●"));
+              spacer.classList = "spacer";
+              var date = employer[1].split("\n\n");
+              var dateElement = document.createElement("p");
+              dateElement.innerHTML = date[0];
+              // var description = document.createElement('p')
+              var descriptionContainer = document.createElement("div");
+              var shortDescriptionContent = date[1].slice(0, 260);
+              var longDescriptionContent = date[1].slice(260);
+              var shortDescription = document.createElement("p");
+              var descriptionBreak = document.createElement("span");
+              var longDescription = document.createElement("span");
+              descriptionBreak.appendChild(document.createTextNode("..."));
+              descriptionBreak.classList = "show";
 
-            shortDescription.appendChild(
-              document.createTextNode(shortDescriptionContent)
-            );
-            descriptionContainer.appendChild(shortDescription);
-            descriptionContainer.classList = "description-container";
-            longDescription.appendChild(
-              document.createTextNode(longDescriptionContent)
-            );
-            longDescription.classList = "long-description hide";
-            shortDescription.appendChild(descriptionBreak);
-            shortDescription.appendChild(longDescription);
-            // description.innerHTML = date[1]
-            console.log(date);
-            employerElement.innerHTML = employer[0];
-            employerContainer.appendChild(employerElement);
-            employerContainer.appendChild(spacer);
-            employerContainer.appendChild(dateElement);
-            div.appendChild(employerContainer);
-            div.appendChild(descriptionContainer);
-            var buttonContainer = document.createElement("div");
-            buttonContainer.classList = "button-container";
-            var button = document.createElement("a");
-            button.appendChild(document.createTextNode("View on HandShake"));
-            button.classList = "handshake-button";
-            button.href = item.link;
-            button.target = "_blank";
-            buttonContainer.appendChild(button);
-            div.appendChild(buttonContainer);
+              shortDescription.appendChild(
+                document.createTextNode(shortDescriptionContent)
+              );
+              descriptionContainer.appendChild(shortDescription);
+              descriptionContainer.classList = "description-container";
+              longDescription.appendChild(
+                document.createTextNode(longDescriptionContent)
+              );
+              longDescription.classList = "long-description hide";
+              shortDescription.appendChild(descriptionBreak);
+              shortDescription.appendChild(longDescription);
+              // description.innerHTML = date[1]
+              console.log(date);
+              employerElement.innerHTML = employer[0];
+              employerContainer.appendChild(employerElement);
+              employerContainer.appendChild(spacer);
+              employerContainer.appendChild(dateElement);
+              div.appendChild(employerContainer);
+              div.appendChild(descriptionContainer);
+              var buttonContainer = document.createElement("div");
+              buttonContainer.classList = "button-container";
+              var button = document.createElement("a");
+              button.appendChild(document.createTextNode("View on HandShake"));
+              button.classList = "handshake-button";
+              button.href = item.link;
+              button.target = "_blank";
+              buttonContainer.appendChild(button);
+              div.appendChild(buttonContainer);
 
-            console.log(item);
-          }
+              console.log(item);
+            }
+          },
+          complete: function () {
+            // Set our complete callback, adding the .hidden class and hiding the spinner.
+            $("#loader").addClass("hide");
+            $("#loader").removeClass("show");
+          },
         });
       }
 

@@ -19,7 +19,7 @@ a {
   padding: 1em 0;
   display: flex;
   gap: 0.5em;
-  overflow-y: scroll;
+  flex-wrap: wrap;
 }
 
 .job-button {
