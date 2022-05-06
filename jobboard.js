@@ -118,6 +118,7 @@ function getJobs(rss) {
 }
 
 function showFullTime() {
+  document.getElementsByClassName("display-jobs")[0].innerHTML = "";
   if (document.getElementById("full-time").classList.contains("hide")) {
     document.getElementById("full-time").classList.remove("hide");
     document.getElementById("full-time").classList.add("show");
@@ -131,6 +132,7 @@ function showFullTime() {
   document.getElementById("pti-button").classList.remove("active");
 }
 function showFullTimeInternship() {
+  document.getElementsByClassName("display-jobs")[0].innerHTML = "";
   if (
     document.getElementById("full-time-internship").classList.contains("hide")
   ) {
@@ -147,6 +149,7 @@ function showFullTimeInternship() {
 }
 
 function showPartTime() {
+  document.getElementsByClassName("display-jobs")[0].innerHTML = "";
   if (document.getElementById("part-time").classList.contains("hide")) {
     document.getElementById("part-time").classList.remove("hide");
     document.getElementById("part-time").classList.add("show");

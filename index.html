@@ -1,6 +1,11 @@
 <html>
   <head>
     <!-- <link rel="stylesheet" href="style.css" /> -->
+    <!-- 
+         Styles for the job board. This should not need changed unless something
+         visually would like to be edited, such as a color or how many results 
+         appear in a row.
+      -->
     <style>
       h1,
       h2,
@@ -147,6 +152,15 @@
   <body>
     <div class="position-container">
       <h3>Position Type</h3>
+      <!-- 
+         the div directly below this comment is responsible for displaying
+         the buttons that appear at the top of the page that determine 
+         what kind of jobs are displayed. If another category would like 
+         to be added as another button, you can copy the "a" tag 
+         and change the function that is called in the onClick property
+         as well as changing the name of the button, which is the last line
+         of the "a" tag.
+       -->
       <div class="position-buttons">
         <a id="ftj-button" class="job-button" onClick="showFullTime()"
           >Full-Time Job</a
@@ -161,6 +175,20 @@
     </div>
     <div class="position-container">
       <h3>Interest Areas</h3>
+      <!-- 
+         the below div houses the buttons that are responsible for the majors
+         that are displayed as buttons so students can click them based on
+         what kind of job they're looking for. each button pulls in different
+         job postings from a different RSS feed, provided by the Career Exploration
+         office through Handshake. in order to add a new button, copy the "a" tag
+         of any below and change the RSS feed in the "getJobs" function. You will
+         need to make sure the RSS feed link is surrounded by ` `, which are not 
+         single quotes, but "ticks" which are commonly found on the ~ or tilda key.
+
+         you will also have to change the text of the button, which is the last 
+         line of the "a" tag. the text will be what is displayed on the button
+         on the live website.
+        -->
       <div class="position-buttons" id="part-time">
         <a
           onClick="getJobs(`https://kent.joinhandshake.com/external_feeds/14596/public.rss?token=bOuon-PBh-xrLAQ_e-lIgL4NE76vzSIsMDver5Y0CnihwzjSTcWv8Q`)"
@@ -381,6 +409,6 @@
       integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
       crossorigin="anonymous"
     ></script>
-    <script src="https://jsonapi.ethanh.works/scripts/jobboard.js"></script>
+    <script src="./jobboard.js"></script>
   </body>
 </html>
