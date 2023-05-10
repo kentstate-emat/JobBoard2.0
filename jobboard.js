@@ -43,6 +43,7 @@ function getJobs(rss) {
       // }
 
       console.log("====== " + response.title + " ======");
+      // console.log(response.items[0]);
 
       for (var i in response.items) {
         var displayJobs = document.getElementsByClassName("display-jobs")[0];
@@ -61,6 +62,11 @@ function getJobs(rss) {
         employerContainer.classList = "employer-container";
         var split = item.description.split("Employer:");
         var employer = split[1].split("Expires:");
+        var dateFormat = new Date(item.created).toISOString().substr(0, 10).replace(/-/g, '/');
+        var dateReformat1 = dateFormat.slice(0,4);
+        var dateReformat2 = dateFormat.slice(5,10);
+        var dateFormatFinal = dateReformat2+"/"+dateReformat1;
+        employer[1] = "Date Posted: " + dateFormatFinal + "</br>Application Deadline: " + employer[1];
         var employerElement = document.createElement("p");
         var spacer = document.createElement("p");
         spacer.appendChild(document.createTextNode("●"));
@@ -91,7 +97,7 @@ function getJobs(rss) {
         shortDescription.appendChild(descriptionBreak);
         shortDescription.appendChild(longDescription);
         // description.innerHTML = date[1]
-        console.log(date);
+        // console.log(employer);
         employerElement.innerHTML = employer[0];
         employerContainer.appendChild(employerElement);
         employerContainer.appendChild(spacer);
